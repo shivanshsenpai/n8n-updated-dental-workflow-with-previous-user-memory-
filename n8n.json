@@ -1,0 +1,3305 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "chatbot",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -336,
+        256
+      ],
+      "id": "14ea4d4f-c6c9-4762-b59f-763763544fe9",
+      "name": "Webhook",
+      "webhookId": "69abb41a-cb05-4e04-a382-5a739d98c112",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "=={\n  \"body\": {{$json.body}},\n  \"message\": \"{{$json.body.message.toLowerCase()}}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -80,
+        256
+      ],
+      "id": "df19f6d9-601a-4264-86ad-bdbde002650c",
+      "name": "Edit Fields",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n    \"reply\": \"Hello 👋 we are glad to see you are intresetd in theeth whitening want us to lisst out?\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        720,
+        -32
+      ],
+      "id": "2650c54c-8f92-4637-812e-ab0b40b1958f",
+      "name": "Respond to Webhook",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{($node[\"Webhook\"].json.body.message || \"\").toLowerCase()}}",
+                    "rightValue": "pain",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "24767f0b-dbc5-430e-849d-401d69f7c781"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Pain"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "a3faf86a-7484-4bb7-9b9d-8e72d5640d26",
+                    "leftValue": "={{($node[\"Webhook\"].json.body.message || \"\").toLowerCase()}}",
+                    "rightValue": "whitening",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Whitening"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "f252f74c-b818-4def-975a-3431702a61be",
+                    "leftValue": "={{$json.message}}",
+                    "rightValue": "booking",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Booking"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "a552d079-364c-4795-b747-a9dbf056971e",
+                    "leftValue": "={{($node[\"Webhook\"].json.body.message || \"\").toLowerCase()}}",
+                    "rightValue": "hello",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Greeting"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "ef2f31b1-9dca-4a8b-9d23-c4f0a3476cbd",
+                    "leftValue": "={{($node[\"Webhook\"].json.body.message || \"\").toLowerCase()}}",
+                    "rightValue": "price",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Price"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        288,
+        192
+      ],
+      "id": "6c34365f-db83-4574-88fa-036a66eb6f99",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"reply\": \"Hello 👋 I can help with appointments, pricing, dental treatments, and emergencies. How can I help today?\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        736,
+        624
+      ],
+      "id": "94a04b4f-1a1d-485a-8a27-8d35beddb516",
+      "name": "Respond to Webhook2",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"reply\": \"Our pricing depends on treatment. Cleaning starts from ₹999 and consultation from ₹499. Which treatment are you asking about?\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        736,
+        800
+      ],
+      "id": "e3bb6cac-5569-4f07-80d3-5ff3580ab865",
+      "name": "Respond to Webhook3",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"reply\": \"I'm sorry you're in pain 😟 We recommend urgent consultation. Please call clinic immediately or tell me your phone number for priority booking.\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        720,
+        -224
+      ],
+      "id": "c48b796e-f824-4d16-97dd-bb10a0817afc",
+      "name": "Respond to Webhook4",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n<Gather numDigits=\"1\" action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-call\" method=\"POST\">\n<Say voice=\"Google.en-US-Neural2-F\">\n\nHello and welcome to SmileCare Dental Clinic.\n\nPress 1 to hear clinic information.\n\nPress 2 to book an appointment with our smart assistant.\n\nहिंदी में बात करने के लिए 3 दबाएं।\n\nPlease press your choice now.\n\n</Say>\n</Gather>\n\n<Say voice=\"Google.en-US-Neural2-F\">\nWe did not receive any input. Goodbye.\n</Say>\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        464,
+        -432
+      ],
+      "id": "2daaa540-57ca-4162-9a7c-a985c62b5073",
+      "name": "Respond to Webhook5",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"message\": \"Appointment booked successfully\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        3424,
+        224
+      ],
+      "id": "3561fb33-dbed-4fc1-a2a6-0b53adc7349e",
+      "name": "Respond to Webhook6",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "mode": "list",
+          "cachedResultName": "SmileCare Bookings",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "SmileCare Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Booking ID": "={{\"BK-\" + Date.now()}}",
+            "Phone": "={{$json.phone}}",
+            "Email": "={{$json.email}}",
+            "Service": "={{$json.service}}",
+            "Date": "={{$json.date}}",
+            "Time": "={{$json.time}}",
+            "Message": "={{$json.message}}",
+            "Name": "={{$json.name}}",
+            "Status": "Confirmed",
+            "Created At": "={{new Date().toLocaleString()}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Booking ID",
+              "displayName": "Booking ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Service",
+              "displayName": "Service",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Created At",
+              "displayName": "Created At",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2160,
+        224
+      ],
+      "id": "433e59f3-a9fa-4e6c-ae76-209f98d67e6b",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Thbbg6Ra2vSKjLTO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{$json.message}}",
+        "options": {
+          "systemMessage": "==You are SmileCare Dental Clinic's voice booking assistant answering user questions.\nYour only job is to help callers book appointments.\n\nCURRENT DATE AND TIME: {{new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}} IST.\nClinic Hours: Monday to Saturday, 9:00 AM to 8:00 PM. Closed Sundays.\n\nSpeak in short, natural, friendly sentences suitable for chat messages.\n\nCRITICAL BOOKING RULE:\nBefore confirming any date and time with the caller, you MUST use your Google Calendar tool to check availability.\n1. Run the tool to see existing events.\n2. If the user's requested time overlaps with an existing event on the calendar, you MUST say: \"I'm sorry, that time is already booked. Would you like [suggest another available time]?\"\n3. Only output the BOOKING_COMPLETE JSON if the requested time is definitively free.\n\nCollect booking details one at a time in this order:\n1. Full Name\n2. Email Address\n3. Required Treatment / Service\n4. Preferred Date\n5. Preferred Time\n\nRules:\n* DO NOT ask for the caller's phone number. Our system captures this automatically.\n* Ask only ONE question at a time.\n* Do not ask again for details already provided.\n* Remember previous answers.\n* If caller gives multiple details together, store them.\n* Be polite and professional.\n* Keep replies under 20 words when possible.\n* If caller is unclear, politely ask again.\n* DO NOT allow bookings outside of Clinic Hours. Politely ask them to choose another time.\n\nWhen all details are collected and the time is confirmed free, respond ONLY with this exact JSON format. Do not add any text outside the JSON:\n\n{\n\"status\":\"BOOKING_COMPLETE\",\n\"name\":\"customer name\",\n\"email\":\"email\",\n\"service\":\"service name\",\n\"date\":\"friendly date for SMS (e.g., May 6th)\",\n\"time\":\"friendly time for SMS (e.g., 4:00 PM)\",\n\"calendarDate\":\"YYYY-MM-DD\",\n\"calendarTime\":\"HH:MM\",\n\"message\":\"brief summary of request\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        864,
+        240
+      ],
+      "id": "029c68e9-718c-4dc7-8a17-8a4e3681ddcf",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{$json.body.sessionId}}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        960,
+        464
+      ],
+      "id": "0e00327d-e4a4-48d6-b4c0-341919f621ac",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "model": "=llama-3.3-70b-versatile",
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        784,
+        464
+      ],
+      "id": "17917d67-c426-4bd1-9c35-af5d78079824",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "7Cc5DnWqSb5obUXd",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3a1a1bc4-a517-4078-af3e-9af7a6bddf8f",
+              "leftValue": "={{$json.status}}",
+              "rightValue": "=BOOKING_COMPLETE",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "34df094d-c33d-4139-abff-c81fc38213e9",
+              "leftValue": "={{$json.parsed.toString()}}",
+              "rightValue": "true",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1680,
+        240
+      ],
+      "id": "b124b402-a13f-44c7-b131-532493ac2217",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"reply\": $json.output } }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        3168,
+        560
+      ],
+      "id": "0f2afaec-4198-40e6-b5fe-4a1d8e6189e6",
+      "name": "Respond to Webhook7",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $json.output;\n\nconst match = text.match(/\\{[\\s\\S]*\\}/);\n\nif (!match) {\n  return [{ json: { parsed: false, output: text } }];\n}\n\nconst data = JSON.parse(match[0]);\n\nreturn [\n  {\n    json: {\n      parsed: true,\n      ...data\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1344,
+        240
+      ],
+      "id": "12861101-6ec0-4ec9-ac6f-6ba9a0cb0433",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "twilio-call",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -336,
+        -1536
+      ],
+      "id": "ce162fd3-4140-4d4f-aadf-9fc08732c9d7",
+      "name": "Webhook1",
+      "webhookId": "8c11a629-a230-479e-a522-3c3123f335b7"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.body.Digits}}",
+                    "rightValue": "1",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "c8e2964c-2d77-466e-acea-c82fe333fcb6"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "ac0d1b20-373e-4b73-85e3-6e89d45a290b",
+                    "leftValue": "={{$json.body.Digits}}",
+                    "rightValue": "2",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "315f5915-ee98-4b88-925c-fb4e647a943c",
+                    "leftValue": "={{$json.body.Digits}}",
+                    "rightValue": "3",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        16,
+        -1568
+      ],
+      "id": "e19c7d74-647d-49d0-863e-ece8815ce9a6",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n  <Gather input=\"speech\" action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-ai-chat\" method=\"POST\" speechTimeout=\"auto\">\n    <Say voice=\"Google.en-US-Neural2-F\">Connecting you to our smart assistant. Hi there ! can you please tell me when do you want a booking </Say>\n  </Gather>\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        496,
+        -2352
+      ],
+      "id": "01eadf5c-8105-4f99-adee-bfc301cb2704",
+      "name": "Respond to Webhook8",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n  <Gather input=\"speech\" action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-general-ai\" method=\"POST\" speechTimeout=\"auto\">\n    <Say voice=\"Google.en-US-Neural2-F\">\n      Hello. How may I help you today?\n    </Say>\n  </Gather>\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        384,
+        -3200
+      ],
+      "id": "3552879e-9bf7-4fec-967a-0de3359c354c",
+      "name": "Respond to Webhook9",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"message\": \"={{$json.body.SpeechResult || 'start booking'}}\",\n  \"sessionId\": \"={{$json.body.CallSid}}\",\n  \"phone\": \"={{$json.body.From}}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2576,
+        -1584
+      ],
+      "id": "7c951672-f8ae-4cea-ad52-aee11fe0b812",
+      "name": "prepare session"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{$json.message}}",
+        "options": {
+          "systemMessage": "==You are SmileCare Dental Clinic's voice booking assistant answering phone calls.\nYour only job is to help callers book appointments.\n\nCURRENT DATE AND TIME: {{new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}} IST.\nClinic Hours: Monday to Saturday, 9:00 AM to 8:00 PM. Closed Sundays.\n\nSpeak in short, natural, friendly sentences suitable for phone calls.\n\nCRITICAL BOOKING RULE:\nBefore confirming any date and time with the caller, you MUST use your Google Calendar tool to check availability.\n1. Run the tool to see existing events.\n2. If the user's requested time overlaps with an existing event on the calendar, you MUST say: \"I'm sorry, that time is already booked. Would you like [suggest another available time]?\"\n3. Only output the BOOKING_COMPLETE JSON if the requested time is definitively free.\n\nCollect booking details one at a time in this order:\n1. Full Name\n2. Email Address\n3. Required Treatment / Service\n4. Preferred Date\n5. Preferred Time\n\nRules:\n* DO NOT ask for the caller's phone number. Our system captures this automatically.\n* Ask only ONE question at a time.\n* Do not ask again for details already provided.\n* Remember previous answers.\n* If caller gives multiple details together, store them.\n* Be polite and professional.\n* Keep replies under 20 words when possible.\n* If caller is unclear, politely ask again.\n* DO NOT allow bookings outside of Clinic Hours. Politely ask them to choose another time.\n\nWhen all details are collected and the time is confirmed free, respond ONLY with this exact JSON format. Do not add any text outside the JSON:\n\n{\n\"status\":\"BOOKING_COMPLETE\",\n\"name\":\"customer name\",\n\"email\":\"email\",\n\"service\":\"service name\",\n\"date\":\"friendly date for SMS (e.g., May 6th)\",\n\"time\":\"friendly time for SMS (e.g., 4:00 PM)\",\n\"calendarDate\":\"YYYY-MM-DD\",\n\"calendarTime\":\"HH:MM\",\n\"message\":\"brief summary of request\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        2896,
+        -1584
+      ],
+      "id": "e2bcc56a-7fe8-4608-841d-9fd3e8f3cb3a",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $json.output || \"\";\n\n// find JSON block inside response\nconst match = text.match(/\\{[\\s\\S]*\\}/);\n\nif (match) {\n  try {\n    const data = JSON.parse(match[0]);\n\n    return [\n      {\n        json: {\n          parsed: true,\n          ...data\n        }\n      }\n    ];\n  } catch (e) {}\n}\n\n// normal AI text reply\nreturn [\n  {\n    json: {\n      parsed: false,\n      output: text\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3328,
+        -1584
+      ],
+      "id": "61242001-112c-4880-bf5c-d6e0eb21d419",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3a1a1bc4-a517-4078-af3e-9af7a6bddf8f",
+              "leftValue": "={{$json.status}}",
+              "rightValue": "=BOOKING_COMPLETE",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "a7e095c9-8d7b-47fc-8ec7-feccb9acd26c",
+              "leftValue": "={{$json.parsed.toString()}}",
+              "rightValue": "true",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3536,
+        -1584
+      ],
+      "id": "db6d05df-6ffd-45fd-b2c0-27758f0cd647",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "mode": "list",
+          "cachedResultName": "SmileCare Bookings",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "SmileCare Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Booking ID": "={{\"BK-\" + Date.now()}}",
+            "Phone": "={{$json.phone || $item(0).$node[\"prepare session\"].json.phone}}",
+            "Email": "={{$json.email}}",
+            "Service": "={{$json.service}}",
+            "Date": "={{$json.date}}",
+            "Time": "={{$json.time}}",
+            "Message": "={{$json.message}}",
+            "Name": "={{$json.name}}",
+            "Status": "Confirmed",
+            "Created At": "={{new Date().toLocaleString()}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Booking ID",
+              "displayName": "Booking ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Service",
+              "displayName": "Service",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Created At",
+              "displayName": "Created At",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4128,
+        -1648
+      ],
+      "id": "57431b09-e18a-4de6-a3b4-6b8737091bd1",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Thbbg6Ra2vSKjLTO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n  <Say voice=\"Google.en-US-Neural2-F\">\n    Your appointment has been successfully booked.\n    We look forward to seeing you.\n    Goodbye.\n  </Say>\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        5088,
+        -1632
+      ],
+      "id": "45496889-e416-4aea-bab4-e892b2bac160",
+      "name": "Respond to Webhook10",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n\n  <Gather \n    input=\"speech\" \n    action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-ai-chat\" \n    method=\"POST\"\n    speechTimeout=\"auto\"\n    timeout=\"5\"\n  >\n    <Say voice=\"Google.en-US-Neural2-F\">\n      {{ $json.output }}\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    Sorry, I didn’t catch that. Could you please repeat?\n  </Say>\n\n  <Redirect method=\"POST\">\n    https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-ai-chat\n  </Redirect>\n\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        5104,
+        -1216
+      ],
+      "id": "41e20d64-92a8-482d-8aca-d461679bc33d",
+      "name": "Respond to Webhook11",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{$json.sessionId}}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        3072,
+        -1376
+      ],
+      "id": "df370624-7111-4de1-b021-1f2bf60607e3",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {
+          "temperature": 0.3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        -1376
+      ],
+      "id": "28915ba2-860c-4f4f-b96e-bef1d3761c10",
+      "name": "Groq Chat Model1",
+      "credentials": {
+        "groqApi": {
+          "id": "7Cc5DnWqSb5obUXd",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "twilio-ai-chat",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        864,
+        -2352
+      ],
+      "id": "8d121f22-9541-45f2-831f-a2b30ee65d07",
+      "name": "Webhook2",
+      "webhookId": "ea37f3ac-de2a-4d9f-af9e-a66118ea3993"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "twilio-general-ai",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        896,
+        -3200
+      ],
+      "id": "9cb66746-1cb2-4039-ae61-20f0e3f99d4a",
+      "name": "Webhook3",
+      "webhookId": "10fe5cda-502b-4acc-8ffd-6dedd62165fa"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message }}",
+        "options": {
+          "systemMessage": "You are SmileCare Dental Clinic's friendly phone receptionist.\n\nSpeak naturally, warmly, and professionally.\n\nKeep replies under 25 words.\n\nYou help callers with:\n\n- clinic hours\n- services\n- pricing estimates\n- location\n- emergency care\n- bookings\n- insurance\n- dentist availability\n\nIf asked something unknown, politely say:\nPlease contact reception for confirmation.\n\nAlways end by asking if they need anything else.\nif user say anything regarding booking and want to book tell them they should press 2 to start the booking process say this politely in case they ask anything regarding the willingness to book a appointment "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1776,
+        -3200
+      ],
+      "id": "90054cd3-5d0a-4bb0-b79d-8535be50dcfe",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"message\": \"={{$json.body.SpeechResult || 'hello'}}\",\n  \"sessionId\": \"={{$json.body.CallSid}}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1312,
+        -3200
+      ],
+      "id": "d218fdaf-7ed9-48d7-a9ee-0b36dd51ff37",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        -3008
+      ],
+      "id": "ca0de275-3988-4ccc-8a42-30f2f49c3c0e",
+      "name": "Groq Chat Model2",
+      "credentials": {
+        "groqApi": {
+          "id": "7Cc5DnWqSb5obUXd",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n  <Gather input=\"speech\" action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-general-ai\" method=\"POST\" speechTimeout=\"auto\" timeout=\"5\">\n    <Say voice=\"Google.en-US-Neural2-F\">\n      {{ $json.output }}\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    I didn't catch that. Please repeat.\n  </Say>\n\n  <Redirect method=\"POST\">\n    https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-general-ai\n  </Redirect>\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        3088,
+        -3200
+      ],
+      "id": "d969fc91-4bae-4b0f-b58e-169bef07a1f0",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n  <Gather input=\"speech\" action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-general-ai\" method=\"POST\" speechTimeout=\"auto\">\n    <Say voice=\"Google.en-US-Neural2-F\">\n      Hello. How may I help you today?\n    </Say>\n  </Gather>\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        -848
+      ],
+      "id": "117287d3-d1d5-4969-a2b0-ee3c3dd728cb",
+      "name": "Respond to Webhook12",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "twilio-general-ai-hindi",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        848,
+        -848
+      ],
+      "id": "ba4bf14c-1a62-4844-81f8-2d793ea7d12b",
+      "name": "Webhook4",
+      "webhookId": "ea37f3ac-de2a-4d9f-af9e-a66118ea3993"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"message\": \"={{$json.body.SpeechResult || 'नमस्ते'}}\",\n  \"sessionId\": \"={{$json.body.CallSid}}\",\n  \"language\": \"hi-IN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1088,
+        -848
+      ],
+      "id": "7ac79845-055e-4943-9925-fb8668de2c31",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{$json.message}}",
+        "options": {
+          "systemMessage": "==You are SmileCare Dental Clinic's voice booking assistant answering phone calls.\nYour only job is to help callers book appointments.\n\nCURRENT DATE AND TIME: {{new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}} IST.\nClinic Hours: Monday to Saturday, 9:00 AM to 8:00 PM. Closed Sundays.\n\nSpeak in short, natural, friendly sentences suitable for phone calls.\n\nCRITICAL BOOKING RULE:\nBefore confirming any date and time with the caller, you MUST use your Google Calendar tool to check availability.\n1. Run the tool to see existing events.\n2. If the user's requested time overlaps with an existing event on the calendar, you MUST say: \"I'm sorry, that time is already booked. Would you like [suggest another available time]?\"\n3. Only output the BOOKING_COMPLETE JSON if the requested time is definitively free.\n\nCollect booking details one at a time in this order:\n1. Full Name\n2. Email Address\n3. Required Treatment / Service\n4. Preferred Date\n5. Preferred Time\n\nRules:\n* DO NOT ask for the caller's phone number. Our system captures this automatically.\n* Ask only ONE question at a time.\n* Do not ask again for details already provided.\n* Remember previous answers.\n* If caller gives multiple details together, store them.\n* Be polite and professional.\n* Keep replies under 20 words when possible.\n* If caller is unclear, politely ask again.\n* DO NOT allow bookings outside of Clinic Hours. Politely ask them to choose another time.\n\nWhen all details are collected and the time is confirmed free, respond ONLY with this exact JSON format. Do not add any text outside the JSON:\n\n{\n\"status\":\"BOOKING_COMPLETE\",\n\"name\":\"customer name\",\n\"email\":\"email\",\n\"service\":\"service name\",\n\"date\":\"friendly date for SMS (e.g., May 6th)\",\n\"time\":\"friendly time for SMS (e.g., 4:00 PM)\",\n\"calendarDate\":\"YYYY-MM-DD\",\n\"calendarTime\":\"HH:MM\",\n\"message\":\"brief summary of request\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1328,
+        -848
+      ],
+      "id": "6862dcee-d81d-4095-bdc1-835a537f6494",
+      "name": "AI Agent3"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        -640
+      ],
+      "id": "908ea334-0619-4f67-863a-a744c0a72d10",
+      "name": "Groq Chat Model3",
+      "credentials": {
+        "groqApi": {
+          "id": "7Cc5DnWqSb5obUXd",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{$json.sessionId}}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1440,
+        -640
+      ],
+      "id": "002b6b3b-79b5-425e-9482-286738d26583",
+      "name": "Simple Memory3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3a1a1bc4-a517-4078-af3e-9af7a6bddf8f",
+              "leftValue": "={{$json.status}}",
+              "rightValue": "=BOOKING_COMPLETE",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "ba6af715-d2b4-4d6a-8897-c1cda558e915",
+              "leftValue": "={{$json.parsed.toString()}}",
+              "rightValue": "true",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1952,
+        -848
+      ],
+      "id": "6938192b-587f-4f51-98a5-bbd76eea949b",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "mode": "list",
+          "cachedResultName": "SmileCare Bookings",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "SmileCare Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Booking ID": "={{\"BK-\" + Date.now()}}",
+            "Phone": "={{$json.phone || $item(0).$node[\"prepare session\"].json.phone}}",
+            "Email": "={{$json.email}}",
+            "Service": "={{$json.service}}",
+            "Date": "={{$json.date}}",
+            "Time": "={{$json.time}}",
+            "Message": "={{$json.message}}",
+            "Name": "={{$json.name}}",
+            "Status": "Confirmed",
+            "Created At": "={{new Date().toLocaleString()}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Booking ID",
+              "displayName": "Booking ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Service",
+              "displayName": "Service",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Created At",
+              "displayName": "Created At",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2304,
+        -864
+      ],
+      "id": "8dbdd769-6bb8-4d35-8fa1-4a468257ce45",
+      "name": "Append row in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Thbbg6Ra2vSKjLTO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n  <Say voice=\"Google.hi-IN-Standard-A\" language=\"hi-IN\">\n    धन्यवाद {{ $json.name }}।\n\n    आपकी अपॉइंटमेंट {{ $json.date }} को {{ $json.time }} बजे के लिए बुक हो गई है।\n\n    हम आपसे मिलने के लिए उत्साहित हैं।\n\n    धन्यवाद, आपका दिन शुभ हो।\n  </Say>\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        3424,
+        -864
+      ],
+      "id": "145f34a0-ad7b-4fc0-ac4e-c643e987b225",
+      "name": "Respond to Webhook13",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n\n  <Gather \n    input=\"speech\"\n    action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-general-ai-hindi\"\n    method=\"POST\"\n    speechTimeout=\"auto\"\n    language=\"hi-IN\"\n    speechModel=\"phone_call\"\n    hints=\"appointment, dentist, cleaning, filling, कल, आज, सुबह, शाम\"\n  >\n\n    <Say voice=\"Google.hi-IN-Standard-A\" language=\"hi-IN\">\n      {{ $json.output || 'कृपया अपनी जानकारी बताएं' }}\n    </Say>\n\n  </Gather>\n\n  <Say voice=\"Google.hi-IN-Standard-A\" language=\"hi-IN\">\n    माफ़ कीजिए, मुझे समझ नहीं आया। कृपया दोबारा बोलें।\n  </Say>\n\n  <Redirect method=\"POST\">\n    https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-general-ai-hindi\n  </Redirect>\n\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        3120,
+        -528
+      ],
+      "id": "9e8823ce-5290-492e-903e-e1f04184d4f1",
+      "name": "Respond to Webhook14",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $json.output || \"\";\n\n// 🧠 Try extracting JSON safely\nlet jsonMatch = text.match(/\\{[\\s\\S]*?\\}/);\n\nif (jsonMatch) {\n  try {\n    const parsed = JSON.parse(jsonMatch[0]);\n\n    return [\n      {\n        json: {\n          parsed: true,\n          status: parsed.status || \"\",\n          name: parsed.name || \"\",\n          email: parsed.email || \"\",\n          service: parsed.service || \"\",\n          date: parsed.date || \"\",\n          time: parsed.time || \"\",\n          message: parsed.message || \"\",\n        }\n      }\n    ];\n  } catch (err) {\n    // JSON found but invalid → treat as normal reply\n  }\n}\n\n// 🗣️ Normal conversational reply (Hindi text)\nreturn [\n  {\n    json: {\n      parsed: false,\n      output: text.trim()\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1696,
+        -848
+      ],
+      "id": "e7c3ce04-b516-4d16-8b51-7f81431b5773",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "sendTo": "shivanshsharma6000@gmail.com",
+        "subject": "==New Booking: {{$node[\"Code in JavaScript1\"].json.name}} | {{$node[\"Code in JavaScript1\"].json.date}} {{$node[\"Code in JavaScript1\"].json.time}}",
+        "emailType": "text",
+        "message": "==New Appointment Booking Received  \n--------------------------------------  \nName: {{$node[\"Code in JavaScript1\"].json.name}} \nPhone: {{$node[\"Code in JavaScript1\"].json.phone || $node[\"prepare session\"].json.phone}} \nEmail: {{$node[\"Code in JavaScript1\"].json.email}}  \nService: {{$node[\"Code in JavaScript1\"].json.service}} \nDate: {{$node[\"Code in JavaScript1\"].json.date}}\nTime: {{$node[\"Code in JavaScript1\"].json.time}} \nMessage: {{$node[\"Code in JavaScript1\"].json.message}} \n--------------------------------------  \nBooked At: {{new Date().toLocaleString()}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        4320,
+        -1632
+      ],
+      "id": "9b1bcd59-06fc-436b-bba2-5163aea40d4f",
+      "name": "Send a message",
+      "webhookId": "1f074906-5cca-4c90-a85e-c7008203641a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "axpSWYCA0P5fj8wA",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "shivanshsharma6000@gmail.com",
+        "subject": "=New Booking: {{$json.name}} | {{$json.date}} {{$json.time}}",
+        "emailType": "text",
+        "message": "=New Appointment Booking Received  --------------------------------------  \nName: {{$json.name}} \nPhone: {{$json.phone || $item(0).$node[\"prepare session\"].json.phone}} \nEmail: {{$json.email}}  Service: {{$json.service}} \nDate: {{$json.date}}\nTime: {{$json.time}} \nMessage: {{$json.message}} \n--------------------------------------  \nBooked At: {{new Date().toLocaleString()}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2592,
+        -864
+      ],
+      "id": "f9435855-0c16-4b8c-933a-15072d0dbecd",
+      "name": "Send a message1",
+      "webhookId": "1f074906-5cca-4c90-a85e-c7008203641a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "axpSWYCA0P5fj8wA",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "shivanshsharma6000@gmail.com",
+        "subject": "==New Booking: {{$node[\"Code in JavaScript\"].json.name}} | {{$node[\"Code in JavaScript\"].json.date}} {{$node[\"Code in JavaScript\"].json.time}}",
+        "emailType": "text",
+        "message": "==New Appointment Booking Received  \n--------------------------------------  \nName: {{$node[\"Code in JavaScript\"].json.name}} \nPhone: {{$node[\"Code in JavaScript\"].json.phone}} \nEmail: {{$node[\"Code in JavaScript\"].json.email}}  \nService: {{$node[\"Code in JavaScript\"].json.service}} \nDate: {{$node[\"Code in JavaScript\"].json.date}}\nTime: {{$node[\"Code in JavaScript\"].json.time}} \nMessage: {{$node[\"Code in JavaScript\"].json.message}} \n--------------------------------------  \nBooked At: {{new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2448,
+        224
+      ],
+      "id": "bb9da7f0-b0ec-46bc-8460-e1e58ffc0b54",
+      "name": "Send a message2",
+      "webhookId": "1f074906-5cca-4c90-a85e-c7008203641a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "axpSWYCA0P5fj8wA",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "from": "+12184844995",
+        "to": "={{ ($node[\"Code in JavaScript1\"].json.phone || $node[\"prepare session\"].json.phone).replace('=', '') }}",
+        "message": "=Hi {{$node[\"Code in JavaScript1\"].json.name}}, your appointment at SmileCare Dental Clinic is confirmed for {{$node[\"Code in JavaScript1\"].json.date}} at {{$node[\"Code in JavaScript1\"].json.time}}. We look forward to seeing you!",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        4832,
+        -1632
+      ],
+      "id": "660f36c3-9ada-4a70-96f9-0ac4f5adcc75",
+      "name": "Send an SMS message",
+      "credentials": {
+        "twilioApi": {
+          "id": "ntW62FQxCqx5Y0IM",
+          "name": "Twilio account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "from": "+12184844995",
+        "to": "={{ ($node[\"Code in JavaScript1\"].json.phone || $node[\"prepare session\"].json.phone).replace('=', '') }}",
+        "message": "=Hi {{$node[\"Code in JavaScript1\"].json.name}}, your appointment at SmileCare Dental Clinic is confirmed for {{$node[\"Code in JavaScript1\"].json.date}} at {{$node[\"Code in JavaScript1\"].json.time}}. We look forward to seeing you!",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        3136,
+        -864
+      ],
+      "id": "36841839-5533-4537-8242-e8c48271414a",
+      "name": "Send an SMS message1",
+      "credentials": {
+        "twilioApi": {
+          "id": "ntW62FQxCqx5Y0IM",
+          "name": "Twilio account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "from": "+12184844995",
+        "to": "={{ ($node[\"Code in JavaScript1\"].json.phone || $node[\"prepare session\"].json.phone).replace('=', '') }}",
+        "message": "=Hi {{$node[\"Code in JavaScript1\"].json.name}}, your appointment at SmileCare Dental Clinic is confirmed for {{$node[\"Code in JavaScript1\"].json.date}} at {{$node[\"Code in JavaScript1\"].json.time}}. We look forward to seeing you!",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        3072,
+        224
+      ],
+      "id": "8bbbad79-4427-46ac-a690-a91b83b030b8",
+      "name": "Send an SMS message2",
+      "credentials": {
+        "twilioApi": {
+          "id": "ntW62FQxCqx5Y0IM",
+          "name": "Twilio account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "5319c03afa5d846f0ab97859fb960d00dac9e8bd7c06889250b5b9ae1240d936@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "SmileCare Appointments"
+        },
+        "start": "={{$node[\"Code in JavaScript\"].json.calendarDate}}T{{$node[\"Code in JavaScript\"].json.calendarTime}}:00+05:30",
+        "end": "={{$node[\"Code in JavaScript\"].json.calendarDate}}T{{$node[\"Code in JavaScript\"].json.calendarTime}}:00+05:30",
+        "additionalFields": {
+          "description": "=Phone: {{$node[\"Code in JavaScript\"].json.phone}} | Email: {{$node[\"Code in JavaScript\"].json.email}}",
+          "summary": "=🦷 {{$node[\"Code in JavaScript\"].json.service}} - {{$node[\"Code in JavaScript\"].json.name}}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        2704,
+        224
+      ],
+      "id": "b880d692-da53-4a4c-af70-f53f909bc565",
+      "name": "Create an event",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "fD8rdynOmZfGGwDa",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "5319c03afa5d846f0ab97859fb960d00dac9e8bd7c06889250b5b9ae1240d936@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "SmileCare Appointments"
+        },
+        "returnAll": true,
+        "timeMin": "={{new Date().toISOString()}}",
+        "timeMax": "={{new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000).toISOString()}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1168,
+        464
+      ],
+      "id": "de81f6d2-4bfb-4376-98fd-7ebc4286dc80",
+      "name": "Get many events in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "fD8rdynOmZfGGwDa",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "5319c03afa5d846f0ab97859fb960d00dac9e8bd7c06889250b5b9ae1240d936@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "SmileCare Appointments"
+        },
+        "returnAll": true,
+        "timeMin": "={{new Date().toISOString()}}",
+        "timeMax": "={{new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000).toISOString()}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1616,
+        -640
+      ],
+      "id": "5819e1a6-afd2-4f0d-ad1a-51be48f46825",
+      "name": "Get many events in Google Calendar1",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "fD8rdynOmZfGGwDa",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "5319c03afa5d846f0ab97859fb960d00dac9e8bd7c06889250b5b9ae1240d936@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "SmileCare Appointments"
+        },
+        "returnAll": true,
+        "timeMin": "={{new Date().toISOString()}}",
+        "timeMax": "={{new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000).toISOString()}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        3248,
+        -1376
+      ],
+      "id": "2b1f8cbb-860e-4cce-9e1f-dd67b1a59d76",
+      "name": "Get many events in Google Calendar2",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "fD8rdynOmZfGGwDa",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "5319c03afa5d846f0ab97859fb960d00dac9e8bd7c06889250b5b9ae1240d936@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "SmileCare Appointments"
+        },
+        "start": "={{$node[\"Code in JavaScript\"].json.calendarDate}}T{{$node[\"Code in JavaScript\"].json.calendarTime}}:00+05:30",
+        "end": "={{$node[\"Code in JavaScript\"].json.calendarDate}}T{{$node[\"Code in JavaScript\"].json.calendarTime}}:00+05:30",
+        "additionalFields": {
+          "description": "=Phone: {{$node[\"Code in JavaScript\"].json.phone}} | Email: {{$node[\"Code in JavaScript\"].json.email}}",
+          "summary": "=🦷 {{$node[\"Code in JavaScript\"].json.service}} - {{$node[\"Code in JavaScript\"].json.name}}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        2864,
+        -864
+      ],
+      "id": "6dd86ca6-0061-495f-be40-ab359b085960",
+      "name": "Create an event1",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "fD8rdynOmZfGGwDa",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "5319c03afa5d846f0ab97859fb960d00dac9e8bd7c06889250b5b9ae1240d936@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "SmileCare Appointments"
+        },
+        "start": "={{$node[\"Code in JavaScript1\"].json.calendarDate}}T{{$node[\"Code in JavaScript1\"].json.calendarTime}}:00+05:30",
+        "end": "={{ new Date(\n   new Date(\n     $node[\"Code in JavaScript1\"].json.calendarDate + \"T\" +\n     $node[\"Code in JavaScript1\"].json.calendarTime + \":00+05:30\"\n   ).getTime() + 30*60000\n).toISOString() }}",
+        "additionalFields": {
+          "description": "=Phone: {{$node[\"Code in JavaScript1\"].json.phone}} | Email: {{$node[\"Code in JavaScript1\"].json.email}}",
+          "summary": "=🦷 {{$node[\"Code in JavaScript1\"].json.service}} - {{$node[\"Code in JavaScript1\"].json.name}}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        4544,
+        -1632
+      ],
+      "id": "9402b5fc-6ff0-423e-a024-84bb2f263446",
+      "name": "Create an event2",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "fD8rdynOmZfGGwDa",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "mode": "list",
+          "cachedResultName": "SmileCare Bookings",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "SmileCare Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Phone",
+              "lookupValue": "={{$json.body.From.replace('+','')}}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1136,
+        -2352
+      ],
+      "id": "26b00fb0-5404-41c8-8734-9a7f1f6b0034",
+      "name": "Search Active Booking",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Thbbg6Ra2vSKjLTO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "217d3304-2017-45bc-bd69-dce8a6d8bb1a",
+              "leftValue": "={{$json[\"Phone\"].toString()}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1376,
+        -2352
+      ],
+      "id": "4983598a-7b1a-4026-84f8-de1b8a6e160c",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n  <Gather\n    input=\"dtmf\"\n    numDigits=\"1\"\n    action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/manage-booking\"\n    method=\"POST\"\n    timeout=\"8\"\n  >\n    <Say voice=\"Google.en-US-Neural2-F\">\n      We found your existing booking.\n      Press 1 to reschedule.\n      Press 2 to cancel.\n      Press 3 to hear your booking details.\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    No input received. Goodbye.\n  </Say>\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1936,
+        -2368
+      ],
+      "id": "202c7b05-0d3e-4667-9ea6-2ad9e641cbe2",
+      "name": "Respond to Webhook15"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n  <Gather\n    input=\"speech\"\n    action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-ai-book\"\n    method=\"POST\"\n    speechTimeout=\"auto\"\n    timeout=\"5\"\n  >\n    <Say voice=\"Google.en-US-Neural2-F\">\n      Hello, welcome to SmileCare Dental Clinic.\n      I can help you book an appointment.\n      May I have your full name please?\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    Sorry, I didn’t hear anything.\n  </Say>\n\n  <Redirect method=\"POST\">\n    https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-ai-book\n  </Redirect>\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1888,
+        -1584
+      ],
+      "id": "ca6a0781-7b44-40b7-9ac2-37da5e0e3307",
+      "name": "Respond to Webhook16"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "manage-booking",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        2256,
+        -2384
+      ],
+      "id": "452f5404-f5ab-4187-82f4-6ec005150ec4",
+      "name": "Manage Booking Webhook",
+      "webhookId": "f8a91935-eb93-44e7-9e06-7b6012b99110"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.body.Digits}}",
+                    "rightValue": "1",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "141e1f20-bcf9-41e5-8ffb-c037e7854074"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "f4c5bb91-1884-41f1-98d2-3208f0579261",
+                    "leftValue": "={{$json.body.Digits}}",
+                    "rightValue": "2",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "98b28d47-a822-4f10-889f-dbc33ec9ab3b",
+                    "leftValue": "={{$json.body.Digits}}",
+                    "rightValue": "3",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        2592,
+        -2400
+      ],
+      "id": "06d90d0c-84df-4144-994e-ff4fa6ea26b1",
+      "name": "Switch2"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "mode": "list",
+          "cachedResultName": "SmileCare Bookings",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "SmileCare Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Phone",
+              "lookupValue": "={{$json.body.From.replace('+','')}}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2992,
+        -2064
+      ],
+      "id": "4adbdea3-653f-4612-ada7-ba8f450b94e2",
+      "name": "Search Active Booking 2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Thbbg6Ra2vSKjLTO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n  <Say voice=\"Google.en-US-Neural2-F\">\n    Your booking is for {{$node[\"Search Active Booking 2\"].json[\"Service\"]}}\n    on {{$node[\"Search Active Booking 2\"].json[\"Date\"]}}\n    at {{$node[\"Search Active Booking 2\"].json[\"Time\"]}}.\n    Thank you.\n  </Say>\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        5072,
+        -2064
+      ],
+      "id": "35348e7b-61f1-49fe-929e-302c520dea3c",
+      "name": "Respond to Webhook18"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "mode": "list",
+          "cachedResultName": "SmileCare Bookings",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "SmileCare Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Phone": "={{$node[\"Search Active Booking \"].json[\"Phone\"]}}",
+            "Status": "Cancelled",
+            "Message": "Cancelled by customer via phone"
+          },
+          "matchingColumns": [
+            "Phone"
+          ],
+          "schema": [
+            {
+              "id": "Booking ID",
+              "displayName": "Booking ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Service",
+              "displayName": "Service",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Created At",
+              "displayName": "Created At",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3856,
+        -2400
+      ],
+      "id": "2d2c4dce-9c03-4b76-a53b-f68ab4455d20",
+      "name": "Cancel Booking",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Thbbg6Ra2vSKjLTO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n  <Say voice=\"Google.en-US-Neural2-F\">\n    Your appointment for \n    {{$node[\"Search Active Booking \"].json[\"Service\"]}}\n    on {{$node[\"Search Active Booking \"].json[\"Date\"]}}\n    at {{$node[\"Search Active Booking \"].json[\"Time\"]}}\n    has been cancelled successfully.\n    Thank you. Goodbye.\n  </Say>\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        5056,
+        -2400
+      ],
+      "id": "c2d08f72-1b49-45e9-9829-c11b6649080d",
+      "name": "Respond to Webhook17"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "mode": "list",
+          "cachedResultName": "SmileCare Bookings",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "SmileCare Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Phone",
+              "lookupValue": "={{$json.body.From.replace('+','')}}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2992,
+        -2400
+      ],
+      "id": "6529f6f5-e6fd-422a-99bd-3499d900b05f",
+      "name": "Search Active Booking ",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Thbbg6Ra2vSKjLTO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n  <Gather\n    input=\"speech\"\n    action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/reschedule-booking\"\n    method=\"POST\"\n    speechTimeout=\"auto\"\n    timeout=\"8\"\n  >\n    <Say voice=\"Google.en-US-Neural2-F\">\n      Please tell me your new preferred date and time.\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    No input received. Goodbye.\n  </Say>\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        2992,
+        -2816
+      ],
+      "id": "ddc804e0-d1ce-4a72-9106-289ebc8acd22",
+      "name": "Respond to Webhook19"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "reschedule-booking",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        3280,
+        -2816
+      ],
+      "id": "f3fb62b6-745c-46eb-9db0-d046536d09df",
+      "name": "Webhook5",
+      "webhookId": "df433b69-58b1-4ab5-b7d5-41f022578800"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"speech\": \"{{$json.body.SpeechResult}}\",\n  \"phone\": \"{{$json.body.From.replace('+','')}}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3536,
+        -2816
+      ],
+      "id": "13bfba5a-4c59-47b9-b0f0-8b2424a3955c",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{$json.speech}}",
+        "options": {
+          "systemMessage": "=Extract the appointment date and time from the user's sentence.\n\nReturn ONLY valid JSON.\n\nFormat:\n{\n  \"date\": \"YYYY-MM-DD\",\n  \"time\": \"HH:MM\"\n}\n\nExamples:\n\"tomorrow at 4 pm\"\n→ {\"date\":\"2026-05-14\",\"time\":\"16:00\"}\n\n\"18th may 10 am\"\n→ {\"date\":\"2026-05-18\",\"time\":\"10:00\"}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        3808,
+        -2816
+      ],
+      "id": "48d54c07-f4a6-404e-b698-dd6d1eb1c0ee",
+      "name": "AI Agent4"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        3776,
+        -2608
+      ],
+      "id": "01478c36-0ef7-4192-b483-7bf4338dd14c",
+      "name": "Groq Chat Model4",
+      "credentials": {
+        "groqApi": {
+          "id": "7Cc5DnWqSb5obUXd",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const txt = $json.output;\nconst data = JSON.parse(txt);\n\nreturn [{\n  json: {\n    date: data.date,\n    time: data.time,\n    phone: $('Edit Fields3').first().json.phone\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4208,
+        -2816
+      ],
+      "id": "9b7a7588-56f2-40c7-9d7d-7266f2809f2b",
+      "name": "Parse Reschedule JSON"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "mode": "list",
+          "cachedResultName": "SmileCare Bookings",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "SmileCare Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Phone": "={{$json.phone}}",
+            "Date": "={{$json.date}}",
+            "Time": "={{$json.time}}",
+            "Status": "Rescheduled",
+            "Message": "Rescheduled by customer via phone"
+          },
+          "matchingColumns": [
+            "Phone"
+          ],
+          "schema": [
+            {
+              "id": "Booking ID",
+              "displayName": "Booking ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Service",
+              "displayName": "Service",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Created At",
+              "displayName": "Created At",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4576,
+        -2816
+      ],
+      "id": "cd478bb9-61c3-4825-844f-59ee49a5470a",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Thbbg6Ra2vSKjLTO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<Response>\n  <Say voice=\"Google.en-US-Neural2-F\">\n    Your appointment has been successfully rescheduled\n    to {{$node[\"Parse Reschedule JSON\"].json[\"date\"]}}\n    at {{$node[\"Parse Reschedule JSON\"].json[\"time\"]}}.\n    Thank you. Goodbye.\n  </Say>\n</Response>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        5024,
+        -2816
+      ],
+      "id": "34b7b05b-a176-4a89-ba66-8cf0b134a7f0",
+      "name": "Respond to Webhook20"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{$json.sessionId}}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1920,
+        -3008
+      ],
+      "id": "271f83e7-03c9-4e56-86bd-7f87043c31ee",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "phone"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        3936,
+        -2592
+      ],
+      "id": "d2a36a07-42be-4625-b4f6-5c27b6a9a519",
+      "name": "Simple Memory4"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "twilio-ai-book",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        2192,
+        -1584
+      ],
+      "id": "42f968fe-d79c-4a5a-a317-8f32681f4692",
+      "name": "Webhook6",
+      "webhookId": "42b95499-15e3-4585-b475-2033fb2a026d"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        []
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook5": {
+      "main": [
+        []
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook7": {
+      "main": [
+        []
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook9",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook8",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook12",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook8": {
+      "main": [
+        []
+      ]
+    },
+    "prepare session": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook10": {
+      "main": [
+        []
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook2": {
+      "main": [
+        [
+          {
+            "node": "Search Active Booking",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook3": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook4": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent3": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory3": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet2": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Create an event2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message1": {
+      "main": [
+        [
+          {
+            "node": "Create an event1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message2": {
+      "main": [
+        [
+          {
+            "node": "Create an event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an SMS message": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an SMS message1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an SMS message2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an event": {
+      "main": [
+        [
+          {
+            "node": "Send an SMS message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many events in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many events in Google Calendar1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many events in Google Calendar2": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an event1": {
+      "main": [
+        [
+          {
+            "node": "Send an SMS message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an event2": {
+      "main": [
+        [
+          {
+            "node": "Send an SMS message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Active Booking": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook15",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manage Booking Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook19",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Search Active Booking ",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Search Active Booking 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Active Booking 2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook18",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cancel Booking": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook17",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Active Booking ": {
+      "main": [
+        [
+          {
+            "node": "Cancel Booking",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook5": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent4": {
+      "main": [
+        [
+          {
+            "node": "Parse Reschedule JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Reschedule JSON": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook20",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory4": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook6": {
+      "main": [
+        [
+          {
+            "node": "prepare session",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3249749915257c635036a4e8375154d28aa6b257105c4d22acec0d78ee529659"
+  }
+}
