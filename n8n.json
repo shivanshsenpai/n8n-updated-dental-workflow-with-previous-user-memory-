@@ -15,7 +15,7 @@
       ],
       "id": "14ea4d4f-c6c9-4762-b59f-763763544fe9",
       "name": "Webhook",
-      "webhookId": "69abb41a-cb05-4e04-a382-5a739d98c112",
+      "webhookId": "YOUR_WEBHOOK_ID_1",
       "notesInFlow": true
     },
     {
@@ -240,13 +240,13 @@
     {
       "parameters": {
         "respondWith": "text",
-        "responseBody": "=<Response>\n<Gather numDigits=\"1\" action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-call\" method=\"POST\">\n<Say voice=\"Google.en-US-Neural2-F\">\n\nHello and welcome to SmileCare Dental Clinic.\n\nPress 1 to hear clinic information.\n\nPress 2 to book an appointment with our smart assistant.\n\nहिंदी में बात करने के लिए 3 दबाएं।\n\nPlease press your choice now.\n\n</Say>\n</Gather>\n\n<Say voice=\"Google.en-US-Neural2-F\">\nWe did not receive any input. Goodbye.\n</Say>\n</Response>",
+        "responseBody": "=<Response>\n<Gather numDigits=\"1\" action=\"https://YOUR_DOMAIN.ngrok.dev/webhook/twilio-call\" method=\"POST\">\n<Say voice=\"Google.en-US-Neural2-F\">\n\nHello and welcome to SmileCare Dental Clinic.\n\nPress 1 to hear clinic information.\n\nPress 2 to book an appointment with our smart assistant.\n\nहिंदी में बात करने के लिए 3 दबाएं।\n\nPlease press your choice now.\n\n</Say>\n</Gather>\n\n<Say voice=\"Google.en-US-Neural2-F\">\nWe did not receive any input. Goodbye.\n</Say>\n</Response>",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        464,
+        512,
         -432
       ],
       "id": "2daaa540-57ca-4162-9a7c-a985c62b5073",
@@ -274,17 +274,17 @@
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "value": "YOUR_GOOGLE_SHEETS_DOCUMENT_ID",
           "mode": "list",
           "cachedResultName": "SmileCare Bookings",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "SmileCare Leads",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -411,7 +411,7 @@
       "name": "Append row in sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "Thbbg6Ra2vSKjLTO",
+          "id": "YOUR_GSHEETS_CRED_ID",
           "name": "Google Sheets account"
         }
       }
@@ -465,7 +465,7 @@
       "name": "Groq Chat Model",
       "credentials": {
         "groqApi": {
-          "id": "7Cc5DnWqSb5obUXd",
+          "id": "YOUR_GROQ_CRED_ID",
           "name": "Groq account"
         }
       }
@@ -557,7 +557,7 @@
       ],
       "id": "ce162fd3-4140-4d4f-aadf-9fc08732c9d7",
       "name": "Webhook1",
-      "webhookId": "8c11a629-a230-479e-a522-3c3123f335b7"
+      "webhookId": "YOUR_WEBHOOK_ID_2"
     },
     {
       "parameters": {
@@ -649,7 +649,7 @@
     {
       "parameters": {
         "respondWith": "text",
-        "responseBody": "=<Response>\n  <Gather input=\"speech\" action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-ai-chat\" method=\"POST\" speechTimeout=\"auto\">\n    <Say voice=\"Google.en-US-Neural2-F\">Connecting you to our smart assistant. Hi there ! can you please tell me when do you want a booking </Say>\n  </Gather>\n</Response>",
+        "responseBody": "=<Response>\n  <Gather input=\"speech\" action=\"https://YOUR_DOMAIN.ngrok.dev/webhook/twilio-ai-chat\" method=\"POST\" speechTimeout=\"auto\">\n    <Say voice=\"Google.en-US-Neural2-F\">Connecting you to our smart assistant. Hi there ! can you please tell me when do you want a booking </Say>\n  </Gather>\n</Response>",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
@@ -665,7 +665,7 @@
     {
       "parameters": {
         "respondWith": "text",
-        "responseBody": "=<Response>\n  <Gather input=\"speech\" action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-general-ai\" method=\"POST\" speechTimeout=\"auto\">\n    <Say voice=\"Google.en-US-Neural2-F\">\n      Hello. How may I help you today?\n    </Say>\n  </Gather>\n</Response>",
+        "responseBody": "=<Response>\n  <Gather input=\"speech\" action=\"https://YOUR_DOMAIN.ngrok.dev/webhook/twilio-general-ai\" method=\"POST\" speechTimeout=\"auto\">\n    <Say voice=\"Google.en-US-Neural2-F\">\n      Hello. How may I help you today?\n    </Say>\n  </Gather>\n</Response>",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
@@ -681,7 +681,7 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "={\n  \"message\": \"={{$json.body.SpeechResult || 'start booking'}}\",\n  \"sessionId\": \"={{$json.body.CallSid}}\",\n  \"phone\": \"={{$json.body.From}}\"\n}",
+        "jsonOutput": "={\n  // Change the message expression to this:\n\"message\": \"={{ $json.body.SpeechResult ? $json.body.SpeechResult : ($json.body.Digits ? $json.body.Digits : 'continue conversation') }}\",\n  \"sessionId\": \"={{$json.body.CallSid}}\",\n  \"phone\": \"={{$json.body.From}}\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.set",
@@ -698,7 +698,7 @@
         "promptType": "define",
         "text": "={{$json.message}}",
         "options": {
-          "systemMessage": "==You are SmileCare Dental Clinic's voice booking assistant answering phone calls.\nYour only job is to help callers book appointments.\n\nCURRENT DATE AND TIME: {{new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}} IST.\nClinic Hours: Monday to Saturday, 9:00 AM to 8:00 PM. Closed Sundays.\n\nSpeak in short, natural, friendly sentences suitable for phone calls.\n\nCRITICAL BOOKING RULE:\nBefore confirming any date and time with the caller, you MUST use your Google Calendar tool to check availability.\n1. Run the tool to see existing events.\n2. If the user's requested time overlaps with an existing event on the calendar, you MUST say: \"I'm sorry, that time is already booked. Would you like [suggest another available time]?\"\n3. Only output the BOOKING_COMPLETE JSON if the requested time is definitively free.\n\nCollect booking details one at a time in this order:\n1. Full Name\n2. Email Address\n3. Required Treatment / Service\n4. Preferred Date\n5. Preferred Time\n\nRules:\n* DO NOT ask for the caller's phone number. Our system captures this automatically.\n* Ask only ONE question at a time.\n* Do not ask again for details already provided.\n* Remember previous answers.\n* If caller gives multiple details together, store them.\n* Be polite and professional.\n* Keep replies under 20 words when possible.\n* If caller is unclear, politely ask again.\n* DO NOT allow bookings outside of Clinic Hours. Politely ask them to choose another time.\n\nWhen all details are collected and the time is confirmed free, respond ONLY with this exact JSON format. Do not add any text outside the JSON:\n\n{\n\"status\":\"BOOKING_COMPLETE\",\n\"name\":\"customer name\",\n\"email\":\"email\",\n\"service\":\"service name\",\n\"date\":\"friendly date for SMS (e.g., May 6th)\",\n\"time\":\"friendly time for SMS (e.g., 4:00 PM)\",\n\"calendarDate\":\"YYYY-MM-DD\",\n\"calendarTime\":\"HH:MM\",\n\"message\":\"brief summary of request\"\n}"
+          "systemMessage": "==You are SmileCare Dental Clinic's voice booking assistant answering phone calls.\nYour only job is to help callers book appointments.\n\nCURRENT DATE AND TIME: {{new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}} IST.\nClinic Hours: Monday to Saturday, 9:00 AM to 8:00 PM. Closed Sundays.\n\nSpeak in short, natural, friendly sentences suitable for phone calls.\n\nCRITICAL BOOKING RULE:\nBefore confirming any date and time with the caller, you MUST use your Google Calendar tool to check availability.\n1. Run the tool to see existing events.\n2. If the user's requested time overlaps with an existing event on the calendar, you MUST say: \"I'm sorry, that time is already booked. Would you like [suggest another available time]?\"\n3. Only output the BOOKING_COMPLETE JSON if the requested time is definitively free.\n\nCollect booking details one at a time in this order:\n1. Full Name\n2. Email Address\n3. Required Treatment / Service\n4. Preferred Date\n5. Preferred Time\n\nRules:\n* DO NOT ask for the caller's phone number. Our system captures this automatically.\n* Ask only ONE question at a time.\n* Do not ask again for details already provided.\n* Remember previous answers.\n* If caller gives multiple details together, store them.\n* Be polite and professional.\n* Keep replies under 20 words when possible.\n* If caller is unclear, politely ask again.\n* DO NOT allow bookings outside of Clinic Hours. Politely ask them to choose another time.\nIf the user provides information out of order, or if you already have a piece of information in your history, move to the next missing item immediately\nWhen all details are collected and the time is confirmed free, respond ONLY with this exact JSON format. Do not add any text outside the JSON:\n\n{\n\"status\":\"BOOKING_COMPLETE\",\n\"name\":\"customer name\",\n\"email\":\"email\",\n\"service\":\"service name\",\n\"date\":\"friendly date for SMS (e.g., May 6th)\",\n\"time\":\"friendly time for SMS (e.g., 4:00 PM)\",\n\"calendarDate\":\"YYYY-MM-DD\",\n\"calendarTime\":\"HH:MM\",\n\"message\":\"brief summary of request\"\n}"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -771,17 +771,17 @@
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "value": "YOUR_GOOGLE_SHEETS_DOCUMENT_ID",
           "mode": "list",
           "cachedResultName": "SmileCare Bookings",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "SmileCare Leads",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -902,13 +902,13 @@
       "typeVersion": 4.7,
       "position": [
         4128,
-        -1648
+        -1632
       ],
       "id": "57431b09-e18a-4de6-a3b4-6b8737091bd1",
       "name": "Append row in sheet1",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "Thbbg6Ra2vSKjLTO",
+          "id": "YOUR_GSHEETS_CRED_ID",
           "name": "Google Sheets account"
         }
       }
@@ -932,14 +932,14 @@
     {
       "parameters": {
         "respondWith": "text",
-        "responseBody": "=<Response>\n\n  <Gather \n    input=\"speech\" \n    action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-ai-chat\" \n    method=\"POST\"\n    speechTimeout=\"auto\"\n    timeout=\"5\"\n  >\n    <Say voice=\"Google.en-US-Neural2-F\">\n      {{ $json.output }}\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    Sorry, I didn’t catch that. Could you please repeat?\n  </Say>\n\n  <Redirect method=\"POST\">\n    https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-ai-chat\n  </Redirect>\n\n</Response>",
+        "responseBody": "=<Response>\n\n  <Gather \n    input=\"speech\" \n    action=\"https://YOUR_DOMAIN.ngrok.dev/webhook/twilio-ai-book\" \n    method=\"POST\"\n    speechTimeout=\"auto\"\n    timeout=\"5\"\n  >\n    <Say voice=\"Google.en-US-Neural2-F\">\n      {{ $json.output }}\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    Sorry, I didn’t catch that. Could you please repeat?\n  </Say>\n\n  <Redirect method=\"POST\">\n    https://YOUR_DOMAIN.ngrok.dev/webhook/twilio-ai-book\n  </Redirect>\n\n</Response>",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
         5104,
-        -1216
+        -1152
       ],
       "id": "41e20d64-92a8-482d-8aca-d461679bc33d",
       "name": "Respond to Webhook11",
@@ -977,7 +977,7 @@
       "name": "Groq Chat Model1",
       "credentials": {
         "groqApi": {
-          "id": "7Cc5DnWqSb5obUXd",
+          "id": "YOUR_GROQ_CRED_ID",
           "name": "Groq account"
         }
       }
@@ -997,7 +997,7 @@
       ],
       "id": "8d121f22-9541-45f2-831f-a2b30ee65d07",
       "name": "Webhook2",
-      "webhookId": "ea37f3ac-de2a-4d9f-af9e-a66118ea3993"
+      "webhookId": "YOUR_WEBHOOK_ID_3"
     },
     {
       "parameters": {
@@ -1014,7 +1014,7 @@
       ],
       "id": "9cb66746-1cb2-4039-ae61-20f0e3f99d4a",
       "name": "Webhook3",
-      "webhookId": "10fe5cda-502b-4acc-8ffd-6dedd62165fa"
+      "webhookId": "YOUR_WEBHOOK_ID_4"
     },
     {
       "parameters": {
@@ -1065,7 +1065,7 @@
       "name": "Groq Chat Model2",
       "credentials": {
         "groqApi": {
-          "id": "7Cc5DnWqSb5obUXd",
+          "id": "YOUR_GROQ_CRED_ID",
           "name": "Groq account"
         }
       }
@@ -1073,7 +1073,7 @@
     {
       "parameters": {
         "respondWith": "text",
-        "responseBody": "=<Response>\n  <Gather input=\"speech\" action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-general-ai\" method=\"POST\" speechTimeout=\"auto\" timeout=\"5\">\n    <Say voice=\"Google.en-US-Neural2-F\">\n      {{ $json.output }}\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    I didn't catch that. Please repeat.\n  </Say>\n\n  <Redirect method=\"POST\">\n    https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-general-ai\n  </Redirect>\n</Response>",
+        "responseBody": "=<Response>\n  <Gather input=\"speech\" action=\"https://YOUR_DOMAIN.ngrok.dev/webhook/twilio-general-ai\" method=\"POST\" speechTimeout=\"auto\" timeout=\"5\">\n    <Say voice=\"Google.en-US-Neural2-F\">\n      {{ $json.output }}\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    I didn't catch that. Please repeat.\n  </Say>\n\n  <Redirect method=\"POST\">\n    https://YOUR_DOMAIN.ngrok.dev/webhook/twilio-general-ai\n  </Redirect>\n</Response>",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
@@ -1088,14 +1088,14 @@
     {
       "parameters": {
         "respondWith": "text",
-        "responseBody": "=<Response>\n  <Gather input=\"speech\" action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-general-ai\" method=\"POST\" speechTimeout=\"auto\">\n    <Say voice=\"Google.en-US-Neural2-F\">\n      Hello. How may I help you today?\n    </Say>\n  </Gather>\n</Response>",
+        "responseBody": "=<Response>\n  <Gather input=\"speech\" action=\"https://YOUR_DOMAIN.ngrok.dev/webhook/twilio-general-ai\" method=\"POST\" speechTimeout=\"auto\">\n    <Say voice=\"Google.en-US-Neural2-F\">\n      Hello. How may I help you today?\n    </Say>\n  </Gather>\n</Response>",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        448,
-        -848
+        512,
+        -752
       ],
       "id": "117287d3-d1d5-4969-a2b0-ee3c3dd728cb",
       "name": "Respond to Webhook12",
@@ -1111,12 +1111,12 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        848,
-        -848
+        1120,
+        -752
       ],
       "id": "ba4bf14c-1a62-4844-81f8-2d793ea7d12b",
       "name": "Webhook4",
-      "webhookId": "ea37f3ac-de2a-4d9f-af9e-a66118ea3993"
+      "webhookId": "YOUR_WEBHOOK_ID_5"
     },
     {
       "parameters": {
@@ -1127,8 +1127,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1088,
-        -848
+        1360,
+        -752
       ],
       "id": "7ac79845-055e-4943-9925-fb8668de2c31",
       "name": "Edit Fields2"
@@ -1144,8 +1144,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        1328,
-        -848
+        1600,
+        -752
       ],
       "id": "6862dcee-d81d-4095-bdc1-835a537f6494",
       "name": "AI Agent3"
@@ -1158,14 +1158,14 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
       "typeVersion": 1,
       "position": [
-        1280,
-        -640
+        1520,
+        -560
       ],
       "id": "908ea334-0619-4f67-863a-a744c0a72d10",
       "name": "Groq Chat Model3",
       "credentials": {
         "groqApi": {
-          "id": "7Cc5DnWqSb5obUXd",
+          "id": "YOUR_GROQ_CRED_ID",
           "name": "Groq account"
         }
       }
@@ -1179,8 +1179,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        1440,
-        -640
+        1680,
+        -560
       ],
       "id": "002b6b3b-79b5-425e-9482-286738d26583",
       "name": "Simple Memory3"
@@ -1222,8 +1222,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        1952,
-        -848
+        2240,
+        -752
       ],
       "id": "6938192b-587f-4f51-98a5-bbd76eea949b",
       "name": "If2"
@@ -1233,17 +1233,17 @@
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "value": "YOUR_GOOGLE_SHEETS_DOCUMENT_ID",
           "mode": "list",
           "cachedResultName": "SmileCare Bookings",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "SmileCare Leads",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -1363,14 +1363,14 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        2304,
-        -864
+        3520,
+        -768
       ],
       "id": "8dbdd769-6bb8-4d35-8fa1-4a468257ce45",
       "name": "Append row in sheet2",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "Thbbg6Ra2vSKjLTO",
+          "id": "YOUR_GSHEETS_CRED_ID",
           "name": "Google Sheets account"
         }
       }
@@ -1384,8 +1384,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        3424,
-        -864
+        5120,
+        -768
       ],
       "id": "145f34a0-ad7b-4fc0-ac4e-c643e987b225",
       "name": "Respond to Webhook13",
@@ -1394,14 +1394,14 @@
     {
       "parameters": {
         "respondWith": "text",
-        "responseBody": "=<Response>\n\n  <Gather \n    input=\"speech\"\n    action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-general-ai-hindi\"\n    method=\"POST\"\n    speechTimeout=\"auto\"\n    language=\"hi-IN\"\n    speechModel=\"phone_call\"\n    hints=\"appointment, dentist, cleaning, filling, कल, आज, सुबह, शाम\"\n  >\n\n    <Say voice=\"Google.hi-IN-Standard-A\" language=\"hi-IN\">\n      {{ $json.output || 'कृपया अपनी जानकारी बताएं' }}\n    </Say>\n\n  </Gather>\n\n  <Say voice=\"Google.hi-IN-Standard-A\" language=\"hi-IN\">\n    माफ़ कीजिए, मुझे समझ नहीं आया। कृपया दोबारा बोलें।\n  </Say>\n\n  <Redirect method=\"POST\">\n    https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-general-ai-hindi\n  </Redirect>\n\n</Response>",
+        "responseBody": "=<Response>\n\n  <Gather \n    input=\"speech\"\n    action=\"https://YOUR_DOMAIN.ngrok.dev/webhook/twilio-general-ai-hindi\"\n    method=\"POST\"\n    speechTimeout=\"auto\"\n    language=\"hi-IN\"\n    speechModel=\"phone_call\"\n    hints=\"appointment, dentist, cleaning, filling, कल, आज, सुबह, शाम\"\n  >\n\n    <Say voice=\"Google.hi-IN-Standard-A\" language=\"hi-IN\">\n      {{ $json.output || 'कृपया अपनी जानकारी बताएं' }}\n    </Say>\n\n  </Gather>\n\n  <Say voice=\"Google.hi-IN-Standard-A\" language=\"hi-IN\">\n    माफ़ कीजिए, मुझे समझ नहीं आया। कृपया दोबारा बोलें।\n  </Say>\n\n  <Redirect method=\"POST\">\n    https://YOUR_DOMAIN.ngrok.dev/webhook/twilio-general-ai-hindi\n  </Redirect>\n\n</Response>",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        3120,
-        -528
+        5120,
+        -384
       ],
       "id": "9e8823ce-5290-492e-903e-e1f04184d4f1",
       "name": "Respond to Webhook14",
@@ -1414,15 +1414,15 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1696,
-        -848
+        1968,
+        -752
       ],
       "id": "e7c3ce04-b516-4d16-8b51-7f81431b5773",
       "name": "Code in JavaScript2"
     },
     {
       "parameters": {
-        "sendTo": "shivanshsharma6000@gmail.com",
+        "sendTo": "YOUR_EMAIL@EXAMPLE.COM",
         "subject": "==New Booking: {{$node[\"Code in JavaScript1\"].json.name}} | {{$node[\"Code in JavaScript1\"].json.date}} {{$node[\"Code in JavaScript1\"].json.time}}",
         "emailType": "text",
         "message": "==New Appointment Booking Received  \n--------------------------------------  \nName: {{$node[\"Code in JavaScript1\"].json.name}} \nPhone: {{$node[\"Code in JavaScript1\"].json.phone || $node[\"prepare session\"].json.phone}} \nEmail: {{$node[\"Code in JavaScript1\"].json.email}}  \nService: {{$node[\"Code in JavaScript1\"].json.service}} \nDate: {{$node[\"Code in JavaScript1\"].json.date}}\nTime: {{$node[\"Code in JavaScript1\"].json.time}} \nMessage: {{$node[\"Code in JavaScript1\"].json.message}} \n--------------------------------------  \nBooked At: {{new Date().toLocaleString()}}",
@@ -1436,17 +1436,17 @@
       ],
       "id": "9b1bcd59-06fc-436b-bba2-5163aea40d4f",
       "name": "Send a message",
-      "webhookId": "1f074906-5cca-4c90-a85e-c7008203641a",
+      "webhookId": "YOUR_WEBHOOK_ID_6",
       "credentials": {
         "gmailOAuth2": {
-          "id": "axpSWYCA0P5fj8wA",
+          "id": "YOUR_GMAIL_CRED_ID",
           "name": "Gmail account"
         }
       }
     },
     {
       "parameters": {
-        "sendTo": "shivanshsharma6000@gmail.com",
+        "sendTo": "YOUR_EMAIL@EXAMPLE.COM",
         "subject": "=New Booking: {{$json.name}} | {{$json.date}} {{$json.time}}",
         "emailType": "text",
         "message": "=New Appointment Booking Received  --------------------------------------  \nName: {{$json.name}} \nPhone: {{$json.phone || $item(0).$node[\"prepare session\"].json.phone}} \nEmail: {{$json.email}}  Service: {{$json.service}} \nDate: {{$json.date}}\nTime: {{$json.time}} \nMessage: {{$json.message}} \n--------------------------------------  \nBooked At: {{new Date().toLocaleString()}}",
@@ -1455,22 +1455,22 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        2592,
-        -864
+        3936,
+        -768
       ],
       "id": "f9435855-0c16-4b8c-933a-15072d0dbecd",
       "name": "Send a message1",
-      "webhookId": "1f074906-5cca-4c90-a85e-c7008203641a",
+      "webhookId": "YOUR_WEBHOOK_ID_6",
       "credentials": {
         "gmailOAuth2": {
-          "id": "axpSWYCA0P5fj8wA",
+          "id": "YOUR_GMAIL_CRED_ID",
           "name": "Gmail account"
         }
       }
     },
     {
       "parameters": {
-        "sendTo": "shivanshsharma6000@gmail.com",
+        "sendTo": "YOUR_EMAIL@EXAMPLE.COM",
         "subject": "==New Booking: {{$node[\"Code in JavaScript\"].json.name}} | {{$node[\"Code in JavaScript\"].json.date}} {{$node[\"Code in JavaScript\"].json.time}}",
         "emailType": "text",
         "message": "==New Appointment Booking Received  \n--------------------------------------  \nName: {{$node[\"Code in JavaScript\"].json.name}} \nPhone: {{$node[\"Code in JavaScript\"].json.phone}} \nEmail: {{$node[\"Code in JavaScript\"].json.email}}  \nService: {{$node[\"Code in JavaScript\"].json.service}} \nDate: {{$node[\"Code in JavaScript\"].json.date}}\nTime: {{$node[\"Code in JavaScript\"].json.time}} \nMessage: {{$node[\"Code in JavaScript\"].json.message}} \n--------------------------------------  \nBooked At: {{new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}}",
@@ -1484,17 +1484,17 @@
       ],
       "id": "bb9da7f0-b0ec-46bc-8460-e1e58ffc0b54",
       "name": "Send a message2",
-      "webhookId": "1f074906-5cca-4c90-a85e-c7008203641a",
+      "webhookId": "YOUR_WEBHOOK_ID_6",
       "credentials": {
         "gmailOAuth2": {
-          "id": "axpSWYCA0P5fj8wA",
+          "id": "YOUR_GMAIL_CRED_ID",
           "name": "Gmail account"
         }
       }
     },
     {
       "parameters": {
-        "from": "+12184844995",
+        "from": "+10000000000",
         "to": "={{ ($node[\"Code in JavaScript1\"].json.phone || $node[\"prepare session\"].json.phone).replace('=', '') }}",
         "message": "=Hi {{$node[\"Code in JavaScript1\"].json.name}}, your appointment at SmileCare Dental Clinic is confirmed for {{$node[\"Code in JavaScript1\"].json.date}} at {{$node[\"Code in JavaScript1\"].json.time}}. We look forward to seeing you!",
         "options": {}
@@ -1509,14 +1509,14 @@
       "name": "Send an SMS message",
       "credentials": {
         "twilioApi": {
-          "id": "ntW62FQxCqx5Y0IM",
+          "id": "YOUR_TWILIO_CRED_ID",
           "name": "Twilio account"
         }
       }
     },
     {
       "parameters": {
-        "from": "+12184844995",
+        "from": "+10000000000",
         "to": "={{ ($node[\"Code in JavaScript1\"].json.phone || $node[\"prepare session\"].json.phone).replace('=', '') }}",
         "message": "=Hi {{$node[\"Code in JavaScript1\"].json.name}}, your appointment at SmileCare Dental Clinic is confirmed for {{$node[\"Code in JavaScript1\"].json.date}} at {{$node[\"Code in JavaScript1\"].json.time}}. We look forward to seeing you!",
         "options": {}
@@ -1524,21 +1524,21 @@
       "type": "n8n-nodes-base.twilio",
       "typeVersion": 1,
       "position": [
-        3136,
-        -864
+        4752,
+        -768
       ],
       "id": "36841839-5533-4537-8242-e8c48271414a",
       "name": "Send an SMS message1",
       "credentials": {
         "twilioApi": {
-          "id": "ntW62FQxCqx5Y0IM",
+          "id": "YOUR_TWILIO_CRED_ID",
           "name": "Twilio account"
         }
       }
     },
     {
       "parameters": {
-        "from": "+12184844995",
+        "from": "+10000000000",
         "to": "={{ ($node[\"Code in JavaScript1\"].json.phone || $node[\"prepare session\"].json.phone).replace('=', '') }}",
         "message": "=Hi {{$node[\"Code in JavaScript1\"].json.name}}, your appointment at SmileCare Dental Clinic is confirmed for {{$node[\"Code in JavaScript1\"].json.date}} at {{$node[\"Code in JavaScript1\"].json.time}}. We look forward to seeing you!",
         "options": {}
@@ -1553,7 +1553,7 @@
       "name": "Send an SMS message2",
       "credentials": {
         "twilioApi": {
-          "id": "ntW62FQxCqx5Y0IM",
+          "id": "YOUR_TWILIO_CRED_ID",
           "name": "Twilio account"
         }
       }
@@ -1562,7 +1562,7 @@
       "parameters": {
         "calendar": {
           "__rl": true,
-          "value": "5319c03afa5d846f0ab97859fb960d00dac9e8bd7c06889250b5b9ae1240d936@group.calendar.google.com",
+          "value": "YOUR_CALENDAR_ID@group.calendar.google.com",
           "mode": "list",
           "cachedResultName": "SmileCare Appointments"
         },
@@ -1583,7 +1583,7 @@
       "name": "Create an event",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "fD8rdynOmZfGGwDa",
+          "id": "YOUR_GCALENDAR_CRED_ID",
           "name": "Google Calendar account"
         }
       }
@@ -1593,7 +1593,7 @@
         "operation": "getAll",
         "calendar": {
           "__rl": true,
-          "value": "5319c03afa5d846f0ab97859fb960d00dac9e8bd7c06889250b5b9ae1240d936@group.calendar.google.com",
+          "value": "YOUR_CALENDAR_ID@group.calendar.google.com",
           "mode": "list",
           "cachedResultName": "SmileCare Appointments"
         },
@@ -1612,7 +1612,7 @@
       "name": "Get many events in Google Calendar",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "fD8rdynOmZfGGwDa",
+          "id": "YOUR_GCALENDAR_CRED_ID",
           "name": "Google Calendar account"
         }
       }
@@ -1622,7 +1622,7 @@
         "operation": "getAll",
         "calendar": {
           "__rl": true,
-          "value": "5319c03afa5d846f0ab97859fb960d00dac9e8bd7c06889250b5b9ae1240d936@group.calendar.google.com",
+          "value": "YOUR_CALENDAR_ID@group.calendar.google.com",
           "mode": "list",
           "cachedResultName": "SmileCare Appointments"
         },
@@ -1634,14 +1634,14 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        1616,
-        -640
+        1888,
+        -560
       ],
       "id": "5819e1a6-afd2-4f0d-ad1a-51be48f46825",
       "name": "Get many events in Google Calendar1",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "fD8rdynOmZfGGwDa",
+          "id": "YOUR_GCALENDAR_CRED_ID",
           "name": "Google Calendar account"
         }
       }
@@ -1651,7 +1651,7 @@
         "operation": "getAll",
         "calendar": {
           "__rl": true,
-          "value": "5319c03afa5d846f0ab97859fb960d00dac9e8bd7c06889250b5b9ae1240d936@group.calendar.google.com",
+          "value": "YOUR_CALENDAR_ID@group.calendar.google.com",
           "mode": "list",
           "cachedResultName": "SmileCare Appointments"
         },
@@ -1670,7 +1670,7 @@
       "name": "Get many events in Google Calendar2",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "fD8rdynOmZfGGwDa",
+          "id": "YOUR_GCALENDAR_CRED_ID",
           "name": "Google Calendar account"
         }
       }
@@ -1679,7 +1679,7 @@
       "parameters": {
         "calendar": {
           "__rl": true,
-          "value": "5319c03afa5d846f0ab97859fb960d00dac9e8bd7c06889250b5b9ae1240d936@group.calendar.google.com",
+          "value": "YOUR_CALENDAR_ID@group.calendar.google.com",
           "mode": "list",
           "cachedResultName": "SmileCare Appointments"
         },
@@ -1693,14 +1693,14 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
-        2864,
-        -864
+        4240,
+        -768
       ],
       "id": "6dd86ca6-0061-495f-be40-ab359b085960",
       "name": "Create an event1",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "fD8rdynOmZfGGwDa",
+          "id": "YOUR_GCALENDAR_CRED_ID",
           "name": "Google Calendar account"
         }
       }
@@ -1709,7 +1709,7 @@
       "parameters": {
         "calendar": {
           "__rl": true,
-          "value": "5319c03afa5d846f0ab97859fb960d00dac9e8bd7c06889250b5b9ae1240d936@group.calendar.google.com",
+          "value": "YOUR_CALENDAR_ID@group.calendar.google.com",
           "mode": "list",
           "cachedResultName": "SmileCare Appointments"
         },
@@ -1730,7 +1730,7 @@
       "name": "Create an event2",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "fD8rdynOmZfGGwDa",
+          "id": "YOUR_GCALENDAR_CRED_ID",
           "name": "Google Calendar account"
         }
       }
@@ -1739,17 +1739,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "value": "YOUR_GOOGLE_SHEETS_DOCUMENT_ID",
           "mode": "list",
           "cachedResultName": "SmileCare Bookings",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "SmileCare Leads",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit#gid=0"
         },
         "filtersUI": {
           "values": [
@@ -1771,9 +1771,10 @@
       ],
       "id": "26b00fb0-5404-41c8-8734-9a7f1f6b0034",
       "name": "Search Active Booking",
+      "alwaysOutputData": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "Thbbg6Ra2vSKjLTO",
+          "id": "YOUR_GSHEETS_CRED_ID",
           "name": "Google Sheets account"
         }
       }
@@ -1815,7 +1816,7 @@
     {
       "parameters": {
         "respondWith": "text",
-        "responseBody": "=<Response>\n  <Gather\n    input=\"dtmf\"\n    numDigits=\"1\"\n    action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/manage-booking\"\n    method=\"POST\"\n    timeout=\"8\"\n  >\n    <Say voice=\"Google.en-US-Neural2-F\">\n      We found your existing booking.\n      Press 1 to reschedule.\n      Press 2 to cancel.\n      Press 3 to hear your booking details.\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    No input received. Goodbye.\n  </Say>\n</Response>",
+        "responseBody": "=<Response>\n  <Gather\n    input=\"dtmf\"\n    numDigits=\"1\"\n    action=\"https://YOUR_DOMAIN.ngrok.dev/webhook/manage-booking\"\n    method=\"POST\"\n    timeout=\"8\"\n  >\n    <Say voice=\"Google.en-US-Neural2-F\">\n      We found your existing booking.\n      Press 1 to reschedule.\n      Press 2 to cancel.\n      Press 3 to hear your booking details.\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    No input received. Goodbye.\n  </Say>\n</Response>",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
@@ -1830,7 +1831,7 @@
     {
       "parameters": {
         "respondWith": "text",
-        "responseBody": "=<Response>\n  <Gather\n    input=\"speech\"\n    action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-ai-book\"\n    method=\"POST\"\n    speechTimeout=\"auto\"\n    timeout=\"5\"\n  >\n    <Say voice=\"Google.en-US-Neural2-F\">\n      Hello, welcome to SmileCare Dental Clinic.\n      I can help you book an appointment.\n      May I have your full name please?\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    Sorry, I didn’t hear anything.\n  </Say>\n\n  <Redirect method=\"POST\">\n    https://stunner-empty-tapered.ngrok-free.dev/webhook/twilio-ai-book\n  </Redirect>\n</Response>",
+        "responseBody": "=<Response>\n  <Gather\n    input=\"speech\"\n    action=\"https://YOUR_DOMAIN.ngrok.dev/webhook/twilio-ai-book\"\n    method=\"POST\"\n    speechTimeout=\"auto\"\n    timeout=\"5\"\n  >\n    <Say voice=\"Google.en-US-Neural2-F\">\n      Hello, welcome to SmileCare Dental Clinic.\n      I can help you book an appointment.\n      May I have your full name please?\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    Sorry, I didn’t hear anything.\n  </Say>\n\n  <Redirect method=\"POST\">\n    https://YOUR_DOMAIN.ngrok.dev/webhook/twilio-ai-book\n  </Redirect>\n</Response>",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
@@ -1857,7 +1858,7 @@
       ],
       "id": "452f5404-f5ab-4187-82f4-6ec005150ec4",
       "name": "Manage Booking Webhook",
-      "webhookId": "f8a91935-eb93-44e7-9e06-7b6012b99110"
+      "webhookId": "YOUR_WEBHOOK_ID_7"
     },
     {
       "parameters": {
@@ -1948,17 +1949,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "value": "YOUR_GOOGLE_SHEETS_DOCUMENT_ID",
           "mode": "list",
           "cachedResultName": "SmileCare Bookings",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "SmileCare Leads",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit#gid=0"
         },
         "filtersUI": {
           "values": [
@@ -1982,7 +1983,7 @@
       "name": "Search Active Booking 2",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "Thbbg6Ra2vSKjLTO",
+          "id": "YOUR_GSHEETS_CRED_ID",
           "name": "Google Sheets account"
         }
       }
@@ -2007,17 +2008,17 @@
         "operation": "update",
         "documentId": {
           "__rl": true,
-          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "value": "YOUR_GOOGLE_SHEETS_DOCUMENT_ID",
           "mode": "list",
           "cachedResultName": "SmileCare Bookings",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "SmileCare Leads",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -2148,7 +2149,7 @@
       "name": "Cancel Booking",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "Thbbg6Ra2vSKjLTO",
+          "id": "YOUR_GSHEETS_CRED_ID",
           "name": "Google Sheets account"
         }
       }
@@ -2172,17 +2173,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "value": "YOUR_GOOGLE_SHEETS_DOCUMENT_ID",
           "mode": "list",
           "cachedResultName": "SmileCare Bookings",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "SmileCare Leads",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit#gid=0"
         },
         "filtersUI": {
           "values": [
@@ -2206,7 +2207,7 @@
       "name": "Search Active Booking ",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "Thbbg6Ra2vSKjLTO",
+          "id": "YOUR_GSHEETS_CRED_ID",
           "name": "Google Sheets account"
         }
       }
@@ -2214,7 +2215,7 @@
     {
       "parameters": {
         "respondWith": "text",
-        "responseBody": "=<Response>\n  <Gather\n    input=\"speech\"\n    action=\"https://stunner-empty-tapered.ngrok-free.dev/webhook/reschedule-booking\"\n    method=\"POST\"\n    speechTimeout=\"auto\"\n    timeout=\"8\"\n  >\n    <Say voice=\"Google.en-US-Neural2-F\">\n      Please tell me your new preferred date and time.\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    No input received. Goodbye.\n  </Say>\n</Response>",
+        "responseBody": "=<Response>\n  <Gather\n    input=\"speech\"\n    action=\"https://YOUR_DOMAIN.ngrok.dev/webhook/reschedule-booking\"\n    method=\"POST\"\n    speechTimeout=\"auto\"\n    timeout=\"8\"\n  >\n    <Say voice=\"Google.en-US-Neural2-F\">\n      Please tell me your new preferred date and time.\n    </Say>\n  </Gather>\n\n  <Say voice=\"Google.en-US-Neural2-F\">\n    No input received. Goodbye.\n  </Say>\n</Response>",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
@@ -2241,7 +2242,7 @@
       ],
       "id": "f3fb62b6-745c-46eb-9db0-d046536d09df",
       "name": "Webhook5",
-      "webhookId": "df433b69-58b1-4ab5-b7d5-41f022578800"
+      "webhookId": "YOUR_WEBHOOK_ID_8"
     },
     {
       "parameters": {
@@ -2290,7 +2291,7 @@
       "name": "Groq Chat Model4",
       "credentials": {
         "groqApi": {
-          "id": "7Cc5DnWqSb5obUXd",
+          "id": "YOUR_GROQ_CRED_ID",
           "name": "Groq account"
         }
       }
@@ -2313,17 +2314,17 @@
         "operation": "update",
         "documentId": {
           "__rl": true,
-          "value": "1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ",
+          "value": "YOUR_GOOGLE_SHEETS_DOCUMENT_ID",
           "mode": "list",
           "cachedResultName": "SmileCare Bookings",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "SmileCare Leads",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LxY4AielIBUvBAaUmVyE0U0IGUeNISQpggthx8SbrrQ/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEETS_DOCUMENT_ID/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -2456,7 +2457,7 @@
       "name": "Update row in sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "Thbbg6Ra2vSKjLTO",
+          "id": "YOUR_GSHEETS_CRED_ID",
           "name": "Google Sheets account"
         }
       }
@@ -2520,7 +2521,7 @@
       ],
       "id": "42f968fe-d79c-4a5a-a317-8f32681f4692",
       "name": "Webhook6",
-      "webhookId": "42b95499-15e3-4585-b475-2033fb2a026d"
+      "webhookId": "YOUR_WEBHOOK_ID_9"
     }
   ],
   "connections": {
@@ -3300,6 +3301,6 @@
   "pinData": {},
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "3249749915257c635036a4e8375154d28aa6b257105c4d22acec0d78ee529659"
+    "instanceId": "YOUR_INSTANCE_ID"
   }
 }
